@@ -33,7 +33,7 @@
 	</owl:DatatypeProperty>
 
 	<owl:DatatypeProperty rdf:ID="minImageSize">
-		<rdfs:domain rdf:resource="#Image"/>
+		<rdfs:domain rdf:resource="#ImageFormat"/>
 		<rdfs:range  rdf:resource="xsd:decimal"/>
 	</owl:DatatypeProperty>
 

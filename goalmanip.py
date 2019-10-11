@@ -1,3 +1,4 @@
+import yaml
 from rdflib import Graph
 
 class GoalGraph (Graph):
@@ -6,8 +7,11 @@ class GoalGraph (Graph):
         self.load(ontology_url)
         print(context)
         print(precondition)
+        with open("apifiles/contextprops.yaml", "r") as file:
+            self.__contextprops = yaml.load(file, Loader=yaml.FullLoader)
 
-    #def __
+
+
 
 if __name__ == "__main__":
     rdf_url = "https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs"

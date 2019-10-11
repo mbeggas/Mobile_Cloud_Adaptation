@@ -17,13 +17,29 @@ def getGoal(g):
 
 
 def askGoal0(g):
-    query = 'PREFIX  resour1: <file:///C:/Users/mbeggas/Google%20Drive/json-test/ontologies/instaceonto.rdfs#> \n'
-    query = 'select ?p ?o where{ '
-    query += ' resour1:maingoal ?p ?o}'
+    query1 = """ 
+    PREFIX  goal: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/goalonto#> 
+    select ?p ?o 
+        where{ 
+            goal:maingoal ?p ?o
+        } """
+
+    query = """ 
+    PREFIX  goal: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/goalonto#> 
+    PREFIX schm: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    select  ?goalmin ?goalmax
+    where{
+        goal:maingoal schm:minImageSize ?goalmin ; 
+                      schm:maxImageSize ?goalmax. 
+        FILTER( xsd:decimal(?goalmin) <= 200  && xsd:decimal(?goalmax) >= 200 )
+    } 
+    """
+    #
 
     print(query)
     rows = executeQuery(query, g)
-    print(rows)
+    print(len(rows))
     for row in rows:
         print(row)
 
@@ -33,8 +49,38 @@ def askGoal1(g, size):
     query += ' <file:///C:/Users/mbeggas/Google Drive/json-test/ontologies/instaceonto.rdfss#g1> go:minImageSize ?goalmin .'
     query += ' <file:///C:/Users/mbeggas/Google Drive/json-test/ontologies/instaceonto.rdfs#g1> go:maxImageSize ?goalmax .'
     query += '  FILTER(xsd:decimal(?goalmin) <= ' + str(size) + ' && xsd:decimal(?goalmax) >= ' + str(size) + ') .}'
-    rows = executeQuery(query, g)
-    print(rows.askAnswer)
+
+    query = """ 
+    PREFIX goal: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/goalonto#> 
+    PREFIX schm: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    ASK{
+        goal:maingoal schm:minImageSize ?goalmin ;
+                      schm:maxImageSize ?goalmax  .
+        FILTER( xsd:decimal(?goalmin) <= %s  && xsd:decimal(?goalmax) >= %s )  
+        } """ % (size, size)
+
+    query2 = """
+    PREFIX  goal: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/goalonto#> 
+    PREFIX schm: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    
+    ask{
+        goal:maingoal schm:minImageSize ?goalmin ; 
+                      schm:maxImageSize ?goalmax. 
+        FILTER( xsd:decimal(?goalmin) <= %s).
+        FILTER(xsd:decimal(?goalmax) >= %s )
+    } 
+    """ % (size, size)
+
+
+
+    #
+    print(query2)
+    # print(query)
+
+    rows = executeQuery(query2, g)
+    print(len(rows), rows.askAnswer)
 
 
 def askGoal2(g, imageFormat):
@@ -43,22 +89,35 @@ def askGoal2(g, imageFormat):
         imageFormat) + ' .'
     query += ' }'
 
+    query = """ 
+    PREFIX goal: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/goalonto#> 
+    PREFIX schm: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#>
+    PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+    PREFIX inst: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
+    select ?s {
+        goal:maingoal ?s inst:jpg .
+        
+        } """ # % (imageFormat)
+    print(query)
     rows = executeQuery(query, g)
-    print(rows.askAnswer)
+    print(len(rows), rows, rows.askAnswer)
+
+    for r in rows:
+        print(r)
 
 
 if __name__ == '__main__':
-    rdf_instances_graph = rdflib.Graph()
-    rdf_url = "https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs" #'ontologies/instaceonto.rdfs'
-    rdf_instances_graph.load(rdf_url)
-    getGoal(rdf_instances_graph)
+    rdf_goal_graph = rdflib.Graph()
+    goal_onto_url = "https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/goalonto" #'ontologies/instaceonto.rdfs'
+    rdf_goal_graph.load(goal_onto_url)
+    #getGoal(rdf_instances_graph)
 
-    # askGoal0(g)
+    #askGoal0(rdf_goal_graph)
     #
-    # imageFormat = '<file:///C:/Users/othma/Desktop/dr/monir/InstancesGoal.rdfs#jpg>'
-    # size = 200
-    # askGoal2(g, size)
-    # askGoal2(g, imageFormat)
+    imageFormat = '<https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#jpg>'
+    size = 200
+    #askGoal1(rdf_goal_graph, size)
+    askGoal2(rdf_goal_graph, imageFormat)
     #
     # """for s,p,o in g:
     #     print s,p,o"""
