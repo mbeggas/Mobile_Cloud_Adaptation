@@ -1,9 +1,13 @@
-<?xml version=1.0?>
+<?xml version="1.0"?>
 <rdf:RDF
 	xmlns:owl ="http://www.w3.org/2002/07/owl#"
 	xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:xsd ="http://www.w3.org/2001/XMLSchema#">
+
+	<!-- classes   -->
+
+	<owl:Class rdf:ID="Image"/>
 
 	<owl:Class rdf:ID="ImageFormat"/>
 
@@ -19,9 +23,27 @@
 		<rdfs:subClassOf rdf:resource="#ImageFormat"/>
 	</owl:Class>
 
-	<!-- les properiétés class  Goal -->
-
 	<owl:Class rdf:ID="Goal"/>
+
+	<!-- Properties of class  Image -->
+
+	<owl:DatatypeProperty rdf:ID="hasImageFormat">
+		<rdfs:domain rdf:resource="#Image"/>
+		<rdfs:range  rdf:resource="#ImageFormat"/>
+	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:ID="minImageSize">
+		<rdfs:domain rdf:resource="#Image"/>
+		<rdfs:range  rdf:resource="xsd:decimal"/>
+	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:ID="maxImageSize">
+		<rdfs:domain rdf:resource="#Goal"/>
+		<rdfs:range  rdf:resource="xsd:decimal"/>
+	</owl:DatatypeProperty>
+
+
+	<!-- Properties of class  Goal -->
 
 	<owl:DatatypeProperty rdf:ID="hasImageFormat">
 		<rdfs:domain rdf:resource="#Goal"/>

@@ -113,6 +113,7 @@ def insert_annotation(annotations, anntation_type, type_value):
 if __name__ == "__main__":
     import urllib.request
 
+
     x = urllib.request.urlopen('https://raw.githubusercontent.com/mbeggas/webapi_adaptation/master/json-test/apifiles/getimage-api.yaml')
     print("-----------------", yaml.load(x.read(), Loader=yaml.FullLoader))
 

@@ -2,24 +2,24 @@
 <rdf:RDF
 	xmlns:owl ="http://www.w3.org/2002/07/owl#"
 	xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:go="http://example.org/GoalOntolog.rdfs#"
+	xmlns:schm="https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	>
 
-	<go:JPGFormat rdf:ID="jpg">
+	<schm:JPGFormat rdf:ID="jpg">
 		<rdfs:comment>
 			rdf:ID ==> instanciation de "jpg" de type go:JPGFormat N3: ("jpg" rdf:type go:JPGFormat)
 		</rdfs:comment>
-	</go:JPGFormat>
+	</schm:JPGFormat>
 
-	<go:PNGFormat rdf:ID="png"/>
-	<go:GIFFormat rdf:ID="gif"/>
+	<schm:PNGFormat rdf:ID="png"/>
+	<schm:GIFFormat rdf:ID="gif"/>
 
-	<go:Goal rdf:ID="maingoal">
-		<go:ImageFormat rdf:resource="#jpg"/>
-		<go:ImageFormat rdf:resource="#png"/>
-		<go:minImageSize>200</go:minImageSize>
-		<go:maxImageSize>300.20</go:maxImageSize>
-	</go:Goal>
+	<schm:Goal rdf:ID="maingoal">
+		<schm:ImageFormat rdf:resource="#jpg"/>
+		<schm:ImageFormat rdf:resource="#png"/>
+		<schm:minImageSize>200</schm:minImageSize>
+		<schm:maxImageSize>300.20</schm:maxImageSize>
+	</schm:Goal>
 
 </rdf:RDF>
