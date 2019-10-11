@@ -6,20 +6,10 @@
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	>
 
-	<schm:JPGFormat rdf:ID="jpg">
-		<rdfs:comment>
-			rdf:ID ==> instanciation de "jpg" de type go:JPGFormat N3: ("jpg" rdf:type go:JPGFormat)
-		</rdfs:comment>
-	</schm:JPGFormat>
+	<!-- rdf:ID ==> instanciation de "jpg" de type go:JPGFormat N3: ("jpg" rdf:type schm:JPGFormat) -->
+	<schm:JPGFormat rdf:ID="jpg"/>
 
 	<schm:PNGFormat rdf:ID="png"/>
 	<schm:GIFFormat rdf:ID="gif"/>
-
-	<schm:Goal rdf:ID="maingoal">
-		<schm:ImageFormat rdf:resource="#jpg"/>
-		<schm:ImageFormat rdf:resource="#png"/>
-		<schm:minImageSize>200</schm:minImageSize>
-		<schm:maxImageSize>300.20</schm:maxImageSize>
-	</schm:Goal>
-
+	
 </rdf:RDF>

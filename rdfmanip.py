@@ -2,7 +2,7 @@ import rdflib
 from rdflib import Graph
 from rdflib import URIRef, RDF, RDFS
 
-
+#<class 'tuple'>: (rdflib.term.Variable('s'), rdflib.term.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), rdflib.term.URIRef('https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#Goal'))
 def executeQuery(query, g):
     return g.query(query)
 
@@ -10,7 +10,7 @@ def executeQuery(query, g):
 def getGoal(g):
     """query = 'select ?s	?v  where { ?s rdf:type or:RegleEevenement . ?s or:lancer ?v . ?s or:limiteMin ?lmin . ?s or:limiteMax ?lmax .  FILTER( xsd:integer(?lmin) <= '+str(x)+' && xsd:integer(?lmax) > '+str(x)+' ) . }'"""
     query = 'select ?s where { ?s rdf:type schm:Goal}'
-    rows = executeQuery(query, g)
+    rows = g.query(query) #executeQuery(query, g)
     for row in rows:
         print(row.s)
         print(row.s.rsplit('#')[-1])
@@ -49,8 +49,8 @@ def askGoal2(g, imageFormat):
 
 if __name__ == '__main__':
     rdf_instances_graph = rdflib.Graph()
-    rdffile = "https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs" #'ontologies/instaceonto.rdfs'
-    rdf_instances_graph.load(rdffile)
+    rdf_url = "https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs" #'ontologies/instaceonto.rdfs'
+    rdf_instances_graph.load(rdf_url)
     getGoal(rdf_instances_graph)
 
     # askGoal0(g)
