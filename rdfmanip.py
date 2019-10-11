@@ -18,24 +18,23 @@ def getGoal(g):
 
 def askGoal0(g):
     query1 = """ 
-    PREFIX  goal: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/goalonto#> 
+    PREFIX inst: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
     select ?p ?o 
         where{ 
-            goal:maingoal ?p ?o
+            inst:maingoal ?p ?o
         } """
 
     query = """ 
-    PREFIX  goal: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/goalonto#> 
+    PREFIX inst: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
     PREFIX schm: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     select  ?goalmin ?goalmax
     where{
-        goal:maingoal schm:minImageSize ?goalmin ; 
+        inst:maingoal schm:minImageSize ?goalmin ; 
                       schm:maxImageSize ?goalmax. 
-        FILTER( xsd:decimal(?goalmin) <= 200  && xsd:decimal(?goalmax) >= 200 )
     } 
     """
-    #
+    #         FILTER( xsd:decimal(?goalmin) <= 200  && xsd:decimal(?goalmax) >= 200 )
 
     print(query)
     rows = executeQuery(query, g)
@@ -110,14 +109,14 @@ if __name__ == '__main__':
     rdf_goal_graph = rdflib.Graph()
     goal_onto_url = "https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/goalonto" #'ontologies/instaceonto.rdfs'
     rdf_goal_graph.load(goal_onto_url)
-    #getGoal(rdf_instances_graph)
+    #getGoal(rdf_goal_graph)
 
-    #askGoal0(rdf_goal_graph)
+    askGoal0(rdf_goal_graph)
     #
     imageFormat = '<https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#jpg>'
     size = 200
     #askGoal1(rdf_goal_graph, size)
-    askGoal2(rdf_goal_graph, imageFormat)
+    #askGoal2(rdf_goal_graph, imageFormat)
     #
     # """for s,p,o in g:
     #     print s,p,o"""
