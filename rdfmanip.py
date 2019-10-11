@@ -9,11 +9,11 @@ def executeQuery(query, g):
 
 def getGoal(g):
     """query = 'select ?s	?v  where { ?s rdf:type or:RegleEevenement . ?s or:lancer ?v . ?s or:limiteMin ?lmin . ?s or:limiteMax ?lmax .  FILTER( xsd:integer(?lmin) <= '+str(x)+' && xsd:integer(?lmax) > '+str(x)+' ) . }'"""
-    query = 'select ?s where { ?s rdf:type go:Goal}'
+    query = 'select ?s where { ?s rdf:type schm:Goal}'
     rows = executeQuery(query, g)
     for row in rows:
         print(row.s)
-        """print(row.s.rsplit('#')[-1])"""
+        print(row.s.rsplit('#')[-1])
 
 
 def askGoal0(g):
@@ -48,12 +48,12 @@ def askGoal2(g, imageFormat):
 
 
 if __name__ == '__main__':
-    g = rdflib.Graph()
-    rdffile = 'ontologies/instaceonto.rdfs'
-    g.load(rdffile)
-    # getGoal(g)
+    rdf_instances_graph = rdflib.Graph()
+    rdffile = "https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs" #'ontologies/instaceonto.rdfs'
+    rdf_instances_graph.load(rdffile)
+    getGoal(rdf_instances_graph)
 
-    askGoal0(g)
+    # askGoal0(g)
     #
     # imageFormat = '<file:///C:/Users/othma/Desktop/dr/monir/InstancesGoal.rdfs#jpg>'
     # size = 200
