@@ -3,7 +3,8 @@
 	xmlns:owl ="http://www.w3.org/2002/07/owl#"
 	xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-	xmlns:xsd ="http://www.w3.org/2001/XMLSchema#">
+	xmlns:xsd ="http://www.w3.org/2001/XMLSchema#"
+>
 
 	<!-- classes   -->
 
@@ -45,7 +46,7 @@
 
 	<!-- Properties of class  Goal -->
 
-	<owl:DatatypeProperty rdf:ID="AcceptImageFormat">
+	<owl:DatatypeProperty rdf:ID="acceptImageFormat">
 		<rdfs:domain rdf:resource="#Goal"/>
 		<rdfs:range  rdf:resource="#ImageFormat"/>
 	</owl:DatatypeProperty>

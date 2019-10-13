@@ -1,10 +1,9 @@
 <?xml version="1.0" ?>
 <rdf:RDF
-	xmlns:owl ="http://www.w3.org/2002/07/owl#"
-	xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:schm="https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#"
-	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-	>
+		xmlns:owl="http://www.w3.org/2002/07/owl#"
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:schm="https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
 
 	<!-- rdf:ID ==> instanciation de "jpg" de type go:JPGFormat N3: ("jpg" rdf:type schm:JPGFormat) -->
 	<schm:JPGFormat rdf:ID="jpg"/>
@@ -13,7 +12,7 @@
 	<schm:GIFFormat rdf:ID="gif"/>
 
 	<schm:Goal rdf:ID="maingoal">
-		<schm:ImageFormat1 rdf:resource="#jpg"/>
+		<schm:acceptImageFormat rdf:resource="#jpg"/>
 		<schm:ImageFormat rdf:resource="#png"/>
 		<schm:minImageSize>200</schm:minImageSize>
 		<schm:maxImageSize>300.20</schm:maxImageSize>
