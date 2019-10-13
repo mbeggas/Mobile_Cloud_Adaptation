@@ -13,7 +13,7 @@
 
 	<schm:Goal rdf:ID="maingoal">
 		<schm:acceptImageFormat rdf:resource="#jpg"/>
-		<schm:ImageFormat rdf:resource="#png"/>
+		<schm:acceptImageFormat rdf:resource="#png"/>
 		<schm:minImageSize>200</schm:minImageSize>
 		<schm:maxImageSize>300.20</schm:maxImageSize>
 	</schm:Goal>
