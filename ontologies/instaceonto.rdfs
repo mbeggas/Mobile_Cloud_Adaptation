@@ -13,10 +13,11 @@
 	<schm:GIFFormat rdf:ID="gif"/>
 
 	<schm:Goal rdf:ID="maingoal">
-		<schm:ImageFormat rdf:resource="#jpg"/>
+		<schm:ImageFormat1 rdf:resource="#jpg"/>
 		<schm:ImageFormat rdf:resource="#png"/>
 		<schm:minImageSize>200</schm:minImageSize>
 		<schm:maxImageSize>300.20</schm:maxImageSize>
 	</schm:Goal>
+
 
 </rdf:RDF>

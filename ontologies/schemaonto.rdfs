@@ -45,7 +45,7 @@
 
 	<!-- Properties of class  Goal -->
 
-	<owl:DatatypeProperty rdf:ID="hasImageFormat">
+	<owl:DatatypeProperty rdf:ID="AcceptImageFormat">
 		<rdfs:domain rdf:resource="#Goal"/>
 		<rdfs:range  rdf:resource="#ImageFormat"/>
 	</owl:DatatypeProperty>
