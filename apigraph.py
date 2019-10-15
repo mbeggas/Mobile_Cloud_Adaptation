@@ -8,4 +8,4 @@ class ApiCompositionGraphNode:
     def __init__(self):
         self.next = []
         self.previous = []
-        self.goal
+        self.goal = None

@@ -9,7 +9,7 @@ info:
 servers:
   - url: http://apis.example.org/
 paths:
-  /images:
+  /getimage/{imageID}:
     get:
       parameters:
         - name: imageID

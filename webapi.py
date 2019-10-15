@@ -70,7 +70,7 @@ class WebApiEndpoint:
         return str(self.apidesc)
 
 
-api2 = WebApiEndpoint("apifiles/getimage-api.yaml", "paths#/images#get")
+api2 = WebApiEndpoint("apifiles/retrieveimage-api.yaml", "paths#/images#get")
 
 
 print(api2.syntactic_annotation)

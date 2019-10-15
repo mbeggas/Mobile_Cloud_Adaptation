@@ -44,12 +44,14 @@ def get_semantic_types(apidesc, descpart, annotation_type, field_name, annot, wh
         for elem in descpart:
             get_semantic_types(apidesc, elem, annotation_type, field_name, annot, whattosearch)
     elif isinstance(descpart, dict):
-        if isinstance(descpart,
-                      dict) and "properties" in descpart.keys():  # each ibject should be annotated as an object by defintnion of object class and classes of its properties
+        if isinstance(descpart, dict) and "properties" in descpart.keys():  # each ibject should be annotated as an object by defintnion of object class and classes of its properties
             propname = ""
             if "name" in descpart.keys():
                 propname = descpart["name"]
-            prop = {descpart[whattosearch]: {"name": propname, whattosearch: descpart[whattosearch], "properties": []}}
+            if propname == "":
+                prop = {descpart[whattosearch]: {whattosearch: descpart[whattosearch], "properties": []}}
+            else:
+                prop = {descpart[whattosearch]: {"name": propname, whattosearch: descpart[whattosearch], "properties": []}}
             returned_annot = {annotation_type: []}
             get_annotation_type(annot, annotation_type, returned_annot)
             returned_annot[annotation_type].append(prop)
@@ -59,7 +61,10 @@ def get_semantic_types(apidesc, descpart, annotation_type, field_name, annot, wh
                 get_semantic_types(apidesc, prop_elem, annotation_type, field_name, returned_annot, whattosearch)
         elif isinstance(descpart, dict) and whattosearch in descpart.keys():
             # print(field_name, ":", descpart)
-            insert_annotation(annot, annotation_type, {"name": field_name, whattosearch: descpart[whattosearch]})
+            if field_name == "":
+                insert_annotation(annot, annotation_type, {whattosearch: descpart[whattosearch]})
+            else:
+                insert_annotation(annot, annotation_type, {"name": field_name, whattosearch: descpart[whattosearch]})
         else:
             for k, v in descpart.items():
                 # print("FFFFFFFFFFFFF  ", v)
@@ -117,13 +122,13 @@ if __name__ == "__main__":
     x = urllib.request.urlopen('https://raw.githubusercontent.com/mbeggas/webapi_adaptation/master/json-test/apifiles/getimage-api.yaml')
     print("-----------------", yaml.load(x.read(), Loader=yaml.FullLoader))
 
-    with open("apifiles/getimage-api.yaml", "r") as file:
+    with open("apifiles/retrieveimage-api.yaml", "r") as file:
         imagedesc = yaml.load(file, Loader=yaml.FullLoader)
 
     # getsemantictypes-(getimDescGetMethod)
     imagedesc_getmethod = imagedesc["paths"]["/images"]["get"]
     annot = {"parameters": [], "responses": []}
-    # get_semantic_types(imagedesc, imagedesc_getmethod, "", "", annot, "@type")
+    get_semantic_types(imagedesc, imagedesc_getmethod, "", "", annot, "@type")
     print(annot)
 
     with open("apifiles/petstore-v3.yaml", "r") as file:

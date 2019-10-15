@@ -1,0 +1,82 @@
+"paths": {
+	"/transcode": {
+		"post": {
+			"parameters": [{
+					"name": "image_url"
+					"type": "string"
+				},
+				{
+					"name": "out_format",
+					"type": "string",
+				}
+			],
+			"semanticAnnotations":{//Input semantics
+				"@context": {
+					"res":"http://example.org/resource/",
+					"xsd":"http://www.w3.org/2001/XMLSchema#"
+				},
+				"image_url": {
+					"@id": "res:imageUrl",
+					"@type": "xsd:anyURI"
+				},
+				"out_format": {
+					"@id": "res:imageFormat",
+					"@type": "xsd:anyURI"
+				}
+			},
+			"responses": {
+				"200": {
+					"schema": {
+						"title": "result",
+						"type": "object",
+						"properties": {
+							"image_url": {"type" : "string"},
+							"image_format": {"type" : "string"},
+							"image_size": {"type" : "int32"},
+						}
+					},
+					"semanticAnnotations":{//Output semantics
+						"@context": {
+							"res": "http://example.org/resource/",
+							"xsd": "http://www.w3.org/2001/XMLSchema#"
+						},
+						"image_url": {
+							"@id": "res:url",
+							"@type": "xsd:anyURI"
+						},
+						"image_format": {
+							"@id": "res:imageFormat",
+							"@type": "xsd:string"
+						},
+						"image_size": {
+							"@id": "res:imageSize",
+							"@type": "xsd:integer"
+						}
+					}
+				}
+			},
+		"precondition":
+			"PREFIX prop: <http://example.org/property/>
+			"PREFIX res: <http://example.org/resource/>
+			ASK{
+				?x prop:hasImageFormat ?y .
+				?x prop:hasImageSize ?s .
+				FILTER {
+					?s>=144 and ?s<=720 and
+					?y in (res:png, res:bmp, res:tiff))
+				}
+			}",
+		"postcondition":
+			"PREFIX prop: <http://example.org/property/>
+			"PREFIX res: <http://example.org/resource/>
+			ASK{
+				?x prop:imageFormat ?y .
+				?x prop:imageSize ?s .
+				FILTER {
+					?s>=144 and ?s<=720 and
+					?y in (res:jpg, res:eps, res:tiff))
+				}
+			}"
+		}
+	}
+}
