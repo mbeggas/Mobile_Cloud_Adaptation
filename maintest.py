@@ -126,7 +126,7 @@ if __name__ == "__main__":
         imagedesc = yaml.load(file, Loader=yaml.FullLoader)
 
     # getsemantictypes-(getimDescGetMethod)
-    imagedesc_getmethod = imagedesc["paths"]["/images"]["get"]
+    imagedesc_getmethod = imagedesc["paths"]["/getimage/{imageID}"]["get"]
     annot = {"parameters": [], "responses": []}
     get_semantic_types(imagedesc, imagedesc_getmethod, "", "", annot, "@type")
     print(annot)

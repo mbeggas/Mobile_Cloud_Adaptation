@@ -80,3 +80,98 @@
 		}
 	}
 }
+\end{lstlisting}
+
+\begin{lstlisting}[
+	numbers=left,
+	basicstyle=\scriptsize,
+	tabsize=2,
+	%frame=single,
+	caption=OpenAPI with semantic description of the Addatation API: \textit{Resize Image}.,
+	label=resizeimage_api
+	]
+"paths": {
+	"/transcode": {
+		"post": {
+			"parameters": [{
+					"name": "image_url"
+					"type": "string"
+				},
+				{
+					"name": "out_format",
+					"type": "string",
+				}
+			],
+			"semanticAnnotations": { /** Input semantics **/
+				"@context": {
+					"res": "http://example.org/resource/",
+					"xsd": "http://www.w3.org/2001/XMLSchema#"
+				},
+				"image_url": {
+					"@id": "res:imageUrl",
+					"@type": "xsd:anyURI"
+				},
+				"out_format": {
+					"@id": "res:imageUrl",
+					"@type": "xsd:anyURI"
+				}
+			},
+			"responses": {
+				"200": {
+					"schema": {
+						"title": "result",
+						"type": "object",
+						"properties": {
+							"image_url": {"type" : "string"},
+							"image_format": {"type" : "string"},
+							"image_size": {"type" : "int32"},
+						}
+					},
+					"semanticAnnotations":{//Output semantics
+						"@context": {
+							"res": "http://example.org/resource/",
+							"xsd": "http://www.w3.org/2001/XMLSchema#"
+						},
+						"image_url": {
+							"@id": "res:url",
+							"@type": "xsd:anyURI"
+						},
+						"image_format": {
+							"@id": "res:imageFormat",
+							"@type": "xsd:string"
+						},
+						"image_size": {
+							"@id": "res:imageSize",
+							"@type": "xsd:integer"
+						}
+					}
+				}
+			},
+		"precondition":"",
+			"PREFIX prop: <http://example.org/property/>
+			"PREFIX res: <http://example.org/resource/>
+			ASK{
+				?x prop:hasImageFormat ?y .
+				?x prop:hasImageSize ?s .
+				FILTER {
+					?s>=144 and ?s<=720 and
+					?y in (res:png, res:bmp, res:tiff))
+				}
+			}",
+		"postcondition":
+			"PREFIX prop: <http://example.org/property/>
+			"PREFIX res: <http://example.org/resource/>
+			ASK{
+				?x prop:imageFormat ?y .
+				?x prop:imageSize ?s .
+				FILTER {
+					?s>=144 and ?s<=720 and
+					 ?y in (res:jpg, res:eps, res:tiff))
+				}
+			}"
+		}
+	}
+}
+\end{lstlisting}
+
+Listings \ref{transcodeimage_api} and \ref{resizeimage_api}  describe receptively an example of adaptation services (APIs) \textit{Transcode Image} and \textit{Resize Image} using OpenAPI description with semantic annotation of inputs/outputs and semantic defintion of precondition/postcondition in SPARQL format.

@@ -20,22 +20,22 @@ def getGoal(g):
 
 def askGoal0(g):
     query1 = """ 
-    PREFIX inst: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
+    PREFIX resource: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
     select ?p ?o 
         where{ 
-            inst:maingoal ?p ?o
+            resource:maingoal ?p ?o
         } """
 
     query = """ 
-    PREFIX inst: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
+    PREFIX resource: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
     PREFIX schm: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     select  ?goalmin ?goalmax ?img
     where{
-        inst:maingoal schm:minImageSize ?goalmin .
-        inst:maingoal schm:maxImageSize ?goalmax. 
-        inst:maingoal schm:acceptImageFormat ?img. 
-        FILTER(?img in (inst:jpg2, inst:png2))
+        resource:maingoal schm:minImageSize ?goalmin .
+        resource:maingoal schm:maxImageSize ?goalmax. 
+        resource:maingoal schm:acceptImageFormat ?img. 
+        FILTER(?img in (resource:jpg2, resource:png2))
     } 
     """
     #         FILTER( xsd:decimal(?goalmin) <= 200  && xsd:decimal(?goalmax) >= 200 )
@@ -64,12 +64,12 @@ def askGoal1(g, size):
         } """ % (size, size)
 
     query2 = """
-    PREFIX inst: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
+    PREFIX resource: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
     PREFIX schm: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     
     ask{
-        inst:maingoal schm:minImageSize ?goalmin ; 
+        resource:maingoal schm:minImageSize ?goalmin ; 
                       schm:maxImageSize ?goalmax. 
         FILTER( xsd:decimal(?goalmin) <= %s).
         FILTER(xsd:decimal(?goalmax) >= %s )
@@ -95,18 +95,18 @@ def askGoal2(g, imageFormat):
     query = """ 
     PREFIX schm: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#>
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
-    PREFIX inst: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
+    PREFIX resource: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
     ASK  {
-        inst:maingoal schm:ImageFormat inst:jpg .
+        resource:maingoal schm:ImageFormat resource:jpg .
         
         } """ # % (imageFormat)
 
     query2 = """ 
     PREFIX schm: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#>
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
-    PREFIX inst: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
+    PREFIX resource: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
     ASK  {
-        inst:maingoal schm:ImageFormat inst:png .
+        resource:maingoal schm:ImageFormat resource:png .
         
         } """ # % (imageFormat)
 
@@ -125,17 +125,17 @@ def askGoal3(g, imageFormat, min, mas):
     query = """ 
     PREFIX schm: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#>
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
-    PREFIX inst: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
+    PREFIX resource: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
     ASK  {
-        inst:maingoal schm:ImageFormat inst:jpg .        
+        resource:maingoal schm:ImageFormat resource:jpg .        
         } """ # % (imageFormat)
 
     query2 = """ 
     PREFIX schm: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/schemaonto.rdfs#>
     PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
-    PREFIX inst: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
+    PREFIX resource: <https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs#>
     ASK  {
-        inst:maingoal schm:ImageFormat inst:png .
+        resource:maingoal schm:ImageFormat resource:png .
         
         } """ # % (imageFormat)
 

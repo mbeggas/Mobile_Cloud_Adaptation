@@ -27,12 +27,14 @@ paths:
                 "@type": class:image
                 type: string
                 format: binary
-      precondition:
+      precondition: true
       postcondition: ASK{
-        ?x prop:hasImageFormat ?y .
+        ?x a class:Goal .
+        ?x prop:acceptImageFormat ?y .
         ?x prop:minImageSize ?mins .
         ?x prop:maxImageSize ?maxs .
-          FILTER (
-            ?mins=??s1 && maxs=??s2 ?y in ??list
-          ).
+        FILTER (
+        ?mins=??s1 && maxs=??s2 ?y in ??list
+        ).
+        }
         }
