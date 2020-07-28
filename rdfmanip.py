@@ -148,9 +148,10 @@ def askGoal3(g, imageFormat, min, mas):
 
 if __name__ == '__main__':
     rdf_goal_graph = rdflib.Graph()
-    goal_onto_url = "https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instaceonto.rdfs" #'ontologies/instanceonto.rdf'
+    goal_onto_url = "https://raw.githubusercontent.com/mbeggas/Mobile_Cloud_Adaptation/master/ontologies/instanceonto.rdf" #'ontologies/instanceonto.rdf'
     rdf_goal_graph.load(goal_onto_url)
-    getGoal(rdf_goal_graph)
+    #getGoal(rdf_goal_graph)
+    #quit(0)
 
     askGoal0(rdf_goal_graph)
     #

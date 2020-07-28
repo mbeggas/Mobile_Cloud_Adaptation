@@ -57,8 +57,8 @@
 			},
 		"precondition":
 			"PREFIX prop: <http://example.org/property/>
-			"PREFIX res: <http://example.org/resource/>
-			ASK{
+			"PREFIX res: <http://example.org/resource/>"
+			"ASK{
 				?x prop:hasImageFormat ?y .
 				?x prop:hasImageSize ?s .
 				FILTER {

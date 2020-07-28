@@ -18,6 +18,12 @@ paths:
           schema:
             type: string
             "@type": class:imageID
+        - name: imageType
+          in: path
+          required: true
+          schema:
+            type: string
+            "@type": class:imageID
       responses:
         200:
           description: returns binary image

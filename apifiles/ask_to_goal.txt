@@ -1,0 +1,19 @@
+        postcondition
+        ASK{
+				?x prop:imageFormat ?y .
+				?x prop:minImageSize ?s1 .
+				?x prop:maxImageSize ?s2 .
+				FILTER {
+					?s1=144 and ?s2=720 and
+					?y in (res:jpg, res:eps, res:tiff))
+				}
+			}
+
+
+PREFIX prop : <h t t p : / / example . o rg / p r o p e r t y /#>
+PREFIX res : <h t t p : / / example . o rg / r e s o u r c e /#>
+res:goal prop:accept ImageFormat res:jpg
+res:goal prop:accept ImageFormat res:eps
+res:goal prop:accept ImageFormat res:tiff
+res:goal prop:minImageSize 144
+res:goal prop:maxImageSize 720
