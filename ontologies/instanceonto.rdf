@@ -11,6 +11,9 @@
 	<schm:PNGFormat rdf:ID="png"/>
 	<schm:GIFFormat rdf:ID="gif"/>
 
+	
+	<schm:Goal rdf:ID="goal1">
+		
 	<schm:Goal rdf:ID="maingoal">
 		<schm:acceptImageFormat rdf:resource="#jpg"/>
 		<schm:acceptImageFormat rdf:resource="#png"/>
